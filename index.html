@@ -6,6 +6,7 @@
     <title>Efarina & Norden | Wedding Gallery</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
     <style>
         /* Navigation link tap/click animation */
         .nav-links a {
@@ -53,13 +54,16 @@
             -webkit-backdrop-filter: blur(8px);
             box-shadow: var(--shadow);
             padding: 1.5rem 5%;
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(214, 175, 138, 0.2);
+        }
+        .wedding-header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: var(--transition);
-            border-bottom: 1px solid rgba(214, 175, 138, 0.2);
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: 0;
         }
 
         .wedding-header.scrolled {
@@ -111,7 +115,8 @@
             font-weight: 500;
             font-size: 1rem;
             letter-spacing: 0.5px;
-            padding: 0.5rem 0;
+            padding-right: 0px;
+            padding-left: 20px;
             transition: var(--transition);
             overflow: hidden;
         }
@@ -122,8 +127,8 @@
             bottom: 0;
             left: 0;
             width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
+            height: 3px;
+            background: var(--primary);
             transition: var(--transition);
         }
 
@@ -147,6 +152,7 @@
             transition: var(--transition);
             padding: 0.5rem;
             border-radius: 4px;
+            margin-right: 10px;
         }
 
         .mobile-menu-btn:hover {
@@ -169,13 +175,13 @@
             
             .nav-links {
                 position: fixed;
-                top: 80px;
+                top: 100px;
                 left: 0;
                 width: 100%;
                 background: var(--light);
                 flex-direction: column;
                 align-items: center;
-                gap: 1.5rem;
+                gap: clamp(1rem, 2vw, 1.8rem);
                 padding: 2rem 0;
                 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
                 transform: translateY(-150%);
@@ -670,27 +676,25 @@
         <i class="fas fa-chevron-up"></i>
     </button>
 </head>
-<header class="wedding-header">
-    <a href="#" class="logo">
-        <i class="fas fa-heart"></i>
-        <span class="couple-names">Efarina & Norden</span>
-    </a>
-    
-    <nav class="nav-links">
-        <a href="#gallery"><i class="fas fa-camera-retro"></i> Galeri</a>
-        <a href="#memories"><i class="fas fa-heartbeat"></i> Memori</a>
-        <a href="#contact"><i class="fas fa-envelope"></i> Hubungi</a>
-    </nav>
-    
-    <button class="mobile-menu-btn" aria-label="Toggle navigation menu">
-        <i class="fas fa-bars"></i>
-    </button>
-</header>
 <body>
     <div class="wedding-gallery">
         <!-- Header -->
-        <?php include 'navigation.php'; ?>
-        
+        <header class="wedding-header">
+            <div class="wedding-header-inner">
+                <a href="#" class="logo">
+                    <i class="fas fa-heart"></i>
+                    <span class="couple-names">Efarina & Norden</span>
+                </a>
+                <nav class="nav-links">
+                    <a href="#gallery"><i class="fas fa-camera-retro"></i> Galeri</a>
+                    <a href="#memories"><i class="fas fa-heartbeat"></i> Memori</a>
+                    <a href="#contact"><i class="fas fa-envelope"></i> Hubungi</a>
+                </nav>
+                <button class="mobile-menu-btn" aria-label="Toggle navigation menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </header>
         <!-- Hero Section -->
         <section class="hero-section">
             <div class="hero-content">
