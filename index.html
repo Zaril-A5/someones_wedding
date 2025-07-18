@@ -685,6 +685,63 @@
         }
       }
 
+      /* Music Player Styles */
+      .music-player {
+        position: fixed;
+        bottom: 32px;
+        left: 32px;
+        z-index: 1200;
+      }
+
+      .music-toggle {
+        width: 48px;
+        height: 48px;
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .music-toggle:hover {
+        background: #bfa07d;
+        transform: scale(1.08);
+      }
+
+      .music-toggle.playing {
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .music-player {
+          bottom: 18px;
+          left: 18px;
+        }
+        .music-toggle {
+          width: 40px;
+          height: 40px;
+          font-size: 1rem;
+        }
+      }
+
       .new-header {
         background: var(--light);
         box-shadow: var(--shadow);
@@ -785,6 +842,17 @@
     </button>
   </head>
   <body>
+    <!-- Background Music -->
+    <div class="music-player">
+      <audio id="bgMusic" loop>
+        <source src="music/background-music.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+      </audio>
+      <button id="musicToggle" class="music-toggle" aria-label="Toggle music">
+        <i class="fas fa-music"></i>
+      </button>
+    </div>
+
     <div class="wedding-gallery">
 
       <!-- New Header -->
@@ -1315,6 +1383,52 @@
 // Scroll to top on page refresh
 window.addEventListener("beforeunload", function () {
   window.scrollTo(0, 0);
+});
+
+// Background Music Control
+document.addEventListener("DOMContentLoaded", function() {
+  const bgMusic = document.getElementById("bgMusic");
+  const musicToggle = document.getElementById("musicToggle");
+  const musicIcon = musicToggle.querySelector("i");
+  let isPlaying = true; // Set to true initially
+
+  // Try to play music automatically when page loads
+  bgMusic.play().then(function() {
+    musicToggle.classList.add("playing");
+    musicIcon.classList.remove("fa-music");
+    musicIcon.classList.add("fa-volume-up");
+  }).catch(function(error) {
+    console.log("Auto-play failed:", error);
+    isPlaying = false;
+  });
+
+  musicToggle.addEventListener("click", function() {
+    if (isPlaying) {
+      bgMusic.pause();
+      musicToggle.classList.remove("playing");
+      musicIcon.classList.remove("fa-volume-up");
+      musicIcon.classList.add("fa-music");
+    } else {
+      bgMusic.play().catch(function(error) {
+        console.log("Audio play failed:", error);
+      });
+      musicToggle.classList.add("playing");
+      musicIcon.classList.remove("fa-music");
+      musicIcon.classList.add("fa-volume-up");
+    }
+    isPlaying = !isPlaying;
+  });
+
+  // Pause music when page is not visible
+  document.addEventListener("visibilitychange", function() {
+    if (document.hidden && isPlaying) {
+      bgMusic.pause();
+      musicToggle.classList.remove("playing");
+      musicIcon.classList.remove("fa-volume-up");
+      musicIcon.classList.add("fa-music");
+      isPlaying = false;
+    }
+  });
 });
 
     </script>
