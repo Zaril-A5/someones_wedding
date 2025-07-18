@@ -1128,6 +1128,7 @@
 
         item.addEventListener("click", () => {
           openLightbox(index);
+        });
       });
 
       function openLightbox(index) {
@@ -1389,30 +1390,24 @@ document.addEventListener("DOMContentLoaded", function() {
   const bgMusic = document.getElementById("bgMusic");
   const musicToggle = document.getElementById("musicToggle");
   const musicIcon = musicToggle.querySelector("i");
-  let isPlaying = false; // Start as not playing
+  let isPlaying = true;  // Set to true initially
 
-  // Try to play music automatically
-  function tryPlayMusic() {
+  // Play music automatically when user interacts with the page
+  function initializeAudio() {
     bgMusic.play().then(function() {
-      isPlaying = true;
       musicToggle.classList.add("playing");
       musicIcon.classList.remove("fa-music");
       musicIcon.classList.add("fa-volume-up");
+      document.removeEventListener("click", initializeAudio); // Remove listener after successful play
     }).catch(function(error) {
-      console.log("Auto-play blocked, waiting for user interaction.");
+      console.log("Auto-play failed:", error);
       isPlaying = false;
+      document.removeEventListener("click", initializeAudio); // Remove listener if failed
     });
   }
 
-  // Try autoplay on DOMContentLoaded
-  tryPlayMusic();
-
-  // If autoplay fails, play on first user interaction (anywhere on page)
-  document.addEventListener("click", function() {
-    if (!isPlaying) {
-      tryPlayMusic();
-    }
-  }, { once: true });
+  // Add click listener for first interaction
+  document.addEventListener("click", initializeAudio, { once: true });
 
   musicToggle.addEventListener("click", function() {
     if (isPlaying) {
@@ -1420,17 +1415,15 @@ document.addEventListener("DOMContentLoaded", function() {
       musicToggle.classList.remove("playing");
       musicIcon.classList.remove("fa-volume-up");
       musicIcon.classList.add("fa-music");
-      isPlaying = false;
     } else {
-      bgMusic.play().then(function() {
-        musicToggle.classList.add("playing");
-        musicIcon.classList.remove("fa-music");
-        musicIcon.classList.add("fa-volume-up");
-        isPlaying = true;
-      }).catch(function(error) {
+      bgMusic.play().catch(function(error) {
         console.log("Audio play failed:", error);
       });
+      musicToggle.classList.add("playing");
+      musicIcon.classList.remove("fa-music");
+      musicIcon.classList.add("fa-volume-up");
     }
+    isPlaying = !isPlaying;
   });
 
   // Pause music when page is not visible
@@ -1443,7 +1436,6 @@ document.addEventListener("DOMContentLoaded", function() {
       isPlaying = false;
     }
   });
-});
 });
 
     </script>
