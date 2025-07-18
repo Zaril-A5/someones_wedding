@@ -1254,22 +1254,51 @@
       });
 
       // Typing effect for the hero title
-      document.addEventListener("DOMContentLoaded", function () {
-        const title = document.querySelector(".wedding-title");
-        if (title) {
-          const fullText = title.textContent;
-          title.textContent = "";
-          let i = 0;
-          function typeWriter() {
-            if (i < fullText.length) {
-              title.textContent += fullText.charAt(i);
-              i++;
-              setTimeout(typeWriter, 80);
-            }
-          }
-          typeWriter();
-        }
+      // Background Music Control
+document.addEventListener("DOMContentLoaded", function() {
+  const bgMusic = document.getElementById("bgMusic");
+  const musicToggle = document.getElementById("musicToggle");
+  const musicIcon = musicToggle.querySelector("i");
+  let isPlaying = true;  // Set to true initially
+
+  // Attempt to play music on page load
+  bgMusic.play().then(function() {
+    musicToggle.classList.add("playing");
+    musicIcon.classList.remove("fa-music");
+    musicIcon.classList.add("fa-volume-up");
+  }).catch(function(error) {
+    console.log("Auto-play failed:", error);
+    isPlaying = false; // Set to false if autoplay fails
+  });
+
+  musicToggle.addEventListener("click", function() {
+    if (isPlaying) {
+      bgMusic.pause();
+      musicToggle.classList.remove("playing");
+      musicIcon.classList.remove("fa-volume-up");
+      musicIcon.classList.add("fa-music");
+    } else {
+      bgMusic.play().catch(function(error) {
+        console.log("Audio play failed:", error);
       });
+      musicToggle.classList.add("playing");
+      musicIcon.classList.remove("fa-music");
+      musicIcon.classList.add("fa-volume-up");
+    }
+    isPlaying = !isPlaying;
+  });
+
+  // Pause music when page is not visible
+  document.addEventListener("visibilitychange", function() {
+    if (document.hidden && isPlaying) {
+      bgMusic.pause();
+      musicToggle.classList.remove("playing");
+      musicIcon.classList.remove("fa-volume-up");
+      musicIcon.classList.add("fa-music");
+      isPlaying = false;
+    }
+  });
+});
 
       // Confetti effect on page load
       function createConfettiPiece() {
@@ -1391,20 +1420,6 @@ document.addEventListener("DOMContentLoaded", function() {
   const musicToggle = document.getElementById("musicToggle");
   const musicIcon = musicToggle.querySelector("i");
   let isPlaying = true;  // Set to true initially
-
-  // Play music automatically when user interacts with the page
-  function initializeAudio() {
-    bgMusic.play().then(function() {
-      musicToggle.classList.add("playing");
-      musicIcon.classList.remove("fa-music");
-      musicIcon.classList.add("fa-volume-up");
-      document.removeEventListener("click", initializeAudio); // Remove listener after successful play
-    }).catch(function(error) {
-      console.log("Auto-play failed:", error);
-      isPlaying = false;
-      document.removeEventListener("click", initializeAudio); // Remove listener if failed
-    });
-  }
 
   // Add click listener for first interaction
   document.addEventListener("click", initializeAudio, { once: true });
