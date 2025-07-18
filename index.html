@@ -1390,17 +1390,24 @@ document.addEventListener("DOMContentLoaded", function() {
   const bgMusic = document.getElementById("bgMusic");
   const musicToggle = document.getElementById("musicToggle");
   const musicIcon = musicToggle.querySelector("i");
-  let isPlaying = true; // Set to true initially
+  let isPlaying = true;  // Set to true initially
 
-  // Try to play music automatically when page loads
-  bgMusic.play().then(function() {
-    musicToggle.classList.add("playing");
-    musicIcon.classList.remove("fa-music");
-    musicIcon.classList.add("fa-volume-up");
-  }).catch(function(error) {
-    console.log("Auto-play failed:", error);
-    isPlaying = false;
-  });
+  // Play music automatically when user interacts with the page
+  function initializeAudio() {
+    bgMusic.play().then(function() {
+      musicToggle.classList.add("playing");
+      musicIcon.classList.remove("fa-music");
+      musicIcon.classList.add("fa-volume-up");
+      document.removeEventListener("click", initializeAudio); // Remove listener after successful play
+    }).catch(function(error) {
+      console.log("Auto-play failed:", error);
+      isPlaying = false;
+      document.removeEventListener("click", initializeAudio); // Remove listener if failed
+    });
+  }
+
+  // Add click listener for first interaction
+  document.addEventListener("click", initializeAudio, { once: true });
 
   musicToggle.addEventListener("click", function() {
     if (isPlaying) {
