@@ -1100,7 +1100,6 @@
         } else {
           scrollUpBtn.classList.remove("visible");
         }
-      });
       scrollUpBtn.addEventListener("click", function () {
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
@@ -1254,31 +1253,44 @@
       });
 
       // Typing effect for the hero title
-      // Background Music Control
-document.addEventListener("DOMContentLoaded", function() {
-  const bgMusic = document.getElementById("bgMusic");
-  const musicToggle = document.getElementById("musicToggle");
-  const musicIcon = musicToggle.querySelector("i");
-  let isPlaying = true;  // Set to true initially
+      // Typing effect for the hero title
 
-  // Attempt to play music on page load
-  bgMusic.play().then(function() {
-    musicToggle.classList.add("playing");
-    musicIcon.classList.remove("fa-music");
-    musicIcon.classList.add("fa-volume-up");
-  }).catch(function(error) {
-    console.log("Auto-play failed:", error);
-    isPlaying = false; // Set to false if autoplay fails
+  // Add floating animation
+  const style = document.createElement("style");
+  style.innerHTML = `
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+    `;
+  document.head.appendChild(style);
+
+  // Play music after user interaction
+  floatingButton.addEventListener("click", function () {
+    bgMusic.play().then(function () {
+      musicToggle.classList.add("playing");
+      musicIcon.classList.remove("fa-music");
+      musicIcon.classList.add("fa-volume-up");
+      isPlaying = true;
+    }).catch(function (error) {
+      console.log("Audio play failed:", error);
+    });
+    floatingButton.remove(); // Remove the button after interaction
   });
 
-  musicToggle.addEventListener("click", function() {
+  // Toggle music on button click
+  musicToggle.addEventListener("click", function () {
     if (isPlaying) {
       bgMusic.pause();
       musicToggle.classList.remove("playing");
       musicIcon.classList.remove("fa-volume-up");
       musicIcon.classList.add("fa-music");
     } else {
-      bgMusic.play().catch(function(error) {
+      bgMusic.play().catch(function (error) {
         console.log("Audio play failed:", error);
       });
       musicToggle.classList.add("playing");
@@ -1289,7 +1301,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   // Pause music when page is not visible
-  document.addEventListener("visibilitychange", function() {
+  document.addEventListener("visibilitychange", function () {
     if (document.hidden && isPlaying) {
       bgMusic.pause();
       musicToggle.classList.remove("playing");
@@ -1415,23 +1427,79 @@ window.addEventListener("beforeunload", function () {
 });
 
 // Background Music Control
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   const bgMusic = document.getElementById("bgMusic");
   const musicToggle = document.getElementById("musicToggle");
   const musicIcon = musicToggle.querySelector("i");
-  let isPlaying = true;  // Set to true initially
+  let isPlaying = false; // Set to false initially
 
-  // Add click listener for first interaction
-  document.addEventListener("click", initializeAudio, { once: true });
+  // Create a small floating button for user interaction
+  const floatingButton = document.createElement("div");
+  floatingButton.style.position = "fixed";
+  floatingButton.style.bottom = "90px"; // Align above the music play button
+  floatingButton.style.left = "32px"; // Align with the music play button
+  floatingButton.style.padding = "10px 20px";
+  floatingButton.style.backgroundColor = "var(--accent)"; // Use --accent color
+  floatingButton.style.color = "white";
+  floatingButton.style.borderRadius = "20px";
+  floatingButton.style.boxShadow = "0 4px 16px rgba(0, 0, 0, 0.1)";
+  floatingButton.style.fontSize = "1rem";
+  floatingButton.style.cursor = "pointer";
+  floatingButton.style.zIndex = "9999";
+  floatingButton.style.animation = "float 2s infinite";
+  floatingButton.textContent = "Tap here to play music";
+  document.body.appendChild(floatingButton);
 
-  musicToggle.addEventListener("click", function() {
+  // Add responsive styles for mobile
+  const responsiveStyle = document.createElement("style");
+  responsiveStyle.innerHTML = `
+    @media (max-width: 600px) {
+      div[style*="Tap here to play music"] {
+        font-size: 0.8rem !important;
+        padding: 8px 16px !important;
+        bottom: 70px !important;
+        left: 18px !important;
+      }
+    }
+  `;
+  document.head.appendChild(responsiveStyle);
+
+  // Add floating animation
+  const style = document.createElement("style");
+  style.innerHTML = `
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+    `;
+  document.head.appendChild(style);
+
+  // Play music after user interaction
+  floatingButton.addEventListener("click", function () {
+    bgMusic.play().then(function () {
+      musicToggle.classList.add("playing");
+      musicIcon.classList.remove("fa-music");
+      musicIcon.classList.add("fa-volume-up");
+      isPlaying = true;
+    }).catch(function (error) {
+      console.log("Audio play failed:", error);
+    });
+    floatingButton.remove(); // Remove the button after interaction
+  });
+
+  // Toggle music on button click
+  musicToggle.addEventListener("click", function () {
     if (isPlaying) {
       bgMusic.pause();
       musicToggle.classList.remove("playing");
       musicIcon.classList.remove("fa-volume-up");
       musicIcon.classList.add("fa-music");
     } else {
-      bgMusic.play().catch(function(error) {
+      bgMusic.play().catch(function (error) {
         console.log("Audio play failed:", error);
       });
       musicToggle.classList.add("playing");
@@ -1442,7 +1510,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   // Pause music when page is not visible
-  document.addEventListener("visibilitychange", function() {
+  document.addEventListener("visibilitychange", function () {
     if (document.hidden && isPlaying) {
       bgMusic.pause();
       musicToggle.classList.remove("playing");
@@ -1452,7 +1520,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 });
-
     </script>
   </body>
 </html>
