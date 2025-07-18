@@ -1,1062 +1,1232 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Efarina & Norden | Wedding Gallery</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Raleway:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+
     <style>
-        /* Navigation link tap/click animation */
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Navigation link tap/click animation */
+      .nav-links a:active {
+        color: var(--accent);
+        background: rgba(140, 109, 98, 0.08);
+        transition: background 0.2s, color 0.2s;
+      }
+      .nav-links a .nav-ripple {
+        position: absolute;
+        border-radius: 50%;
+        transform: scale(0);
+        animation: nav-ripple 0.5s linear;
+        background: rgba(140, 109, 98, 0.18);
+        pointer-events: none;
+        z-index: 1;
+      }
+      @keyframes nav-ripple {
+        to {
+          transform: scale(4);
+          opacity: 0;
+        }
+      }
+      :root {
+        --primary: #b76e79; /* Romantic rose gold */
+        --accent: #d4af8a; /* Soft gold */
+        --dark: #333333; /* Deep charcoal */
+        --light: #f9f5f2; /* Creamy white */
+        --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        --soft-pink: #f8e2e7; /* New soft pink color */
+        --header-pink: #f5d7de; /* Slightly darker pink for header */
+        --nav-link: #8a4b54;   /* Darker pink for links */
+        --primary: #b76e79;    /* Keep existing rose gold */
+        --accent: #d4af8a;     /* Keep existing soft gold */
+      }
+
+      /* Logo Styles */
+      .logo {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.5rem, 3vw, 2.2rem);
+        color: var(--primary);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        letter-spacing: 1px;
+        font-weight: 600;
+        transition: var(--transition);
+      }
+
+      .logo i {
+        margin-right: 12px;
+        color: var(--accent);
+        font-size: 1.2em;
+        transition: var(--transition);
+      }
+
+    .logo:hover {
+  color: var(--primary);
+  transform: none; /* Remove translate effect */
+}
+
+.logo:hover i {
+  transform: scale(1.1);
+  color: var(--primary);
+}
+
+      /* Navigation Links */
+
+      .wedding-gallery * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      .hero-section {
+        height: 100vh;
+        min-height: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+          url("efarina_wedding_images/pengantin_sahaja/hero.jpg") center/cover
+            no-repeat;
+        color: white;
+        padding: 20px;
+        margin-top: 0;
+      }
+
+      .hero-content {
+        max-width: 800px;
+        padding: 30px;
+      }
+
+      .wedding-title {
+        font-family: "Playfair Display", serif;
+        font-size: 4rem;
+        font-weight: 500;
+        letter-spacing: 2px;
+        margin-bottom: 1rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .wedding-subtitle {
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
+        font-weight: 300;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .divider {
+        height: 2px;
+        width: 120px;
+        background: var(--accent);
+        margin: 2rem auto;
+      }
+
+      .section {
+        padding: 100px 30px;
+        text-align: center;
+      }
+
+      .section-title {
+        font-family: "Playfair Display", serif;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        color: var(--dark);
+        position: relative;
+        display: inline-block;
+      }
+
+      .section-title:after {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 2px;
+        background: var(--primary);
+      }
+
+      .filter-btn {
+        background: transparent;
+        border: 2px solid var(--primary);
+        color: var(--primary);
+        padding: 8px 20px;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 500;
+      }
+
+      .filter-btn.active,
+      .filter-btn:hover {
+        background: var(--primary);
+        color: white;
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 25px;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        height: 350px;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-item:hover {
+        transform: translateY(-10px);
+      }
+
+      .gallery-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .gallery-item:hover .gallery-img {
+        transform: scale(1.1);
+      }
+
+      .gallery-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(transparent 60%, rgba(0, 0, 0, 0.7));
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 20px;
+        color: white;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .gallery-item:hover .gallery-overlay {
+        opacity: 1;
+      }
+
+      .gallery-caption {
+        font-size: 1.1rem;
+        margin-bottom: 5px;
+      }
+
+      .gallery-date {
+        font-size: 0.9rem;
+        opacity: 0.8;
+      }
+
+      .testimonials-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        max-width: 1200px;
+        margin: 50px auto 0;
+      }
+      /* Center single testimonial in a row */
+      .testimonials-container:has(.testimonial:only-child) {
+        justify-content: center;
+        grid-template-columns: 1fr;
+      }
+      .testimonial {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .testimonial {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        text-align: left;
+        position: relative;
+      }
+
+      .testimonial:before {
+        content: "";
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        font-size: 4rem;
+        font-family: "Playfair Display", serif;
+        color: var(--accent);
+        opacity: 0.3;
+      }
+
+      .testimonial-text {
+        margin: 20px 0;
+        font-style: italic;
+      }
+
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .author-img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .author-name {
+        font-weight: 500;
+        color: var(--dark);
+      }
+
+      .author-relation {
+        font-size: 0.9rem;
+        color: var(--primary);
+      }
+
+      .wedding-footer {
+        background: var(--dark);
+        color: white;
+        text-align: center;
+        padding: 60px 20px 30px;
+      }
+
+      .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        margin: 30px 0;
+      }
+
+      .social-icons a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        color: var(--accent);
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        background: var(--accent);
+        color: var(--dark);
+        transform: translateY(-5px);
+      }
+
+      .copyright {
+        margin-top: 40px;
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .lightbox {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 2000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+
+      .lightbox.active {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .lightbox-content {
+        position: relative;
+        max-width: 90%;
+        max-height: 90%;
+      }
+
+      .lightbox-img {
+        max-width: 100%;
+        max-height: 80vh;
+        border-radius: 8px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      }
+
+      .lightbox-caption {
+        color: white;
+        text-align: center;
+        margin-top: 15px;
+        font-size: 1.1rem;
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .close-btn:hover {
+        transform: rotate(90deg);
+      }
+
+      @media (min-width: 769px) {
         .nav-links a {
-            position: relative;
-            overflow: hidden;
-        }
-        .nav-links a:active {
-            color: var(--accent);
-            background: rgba(140, 109, 98, 0.08);
-            transition: background 0.2s, color 0.2s;
-        }
-        .nav-links a .nav-ripple {
-            position: absolute;
-            border-radius: 50%;
-            transform: scale(0);
-            animation: nav-ripple 0.5s linear;
-            background: rgba(140, 109, 98, 0.18);
-            pointer-events: none;
-            z-index: 1;
-        }
-        @keyframes nav-ripple {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
-        }
-        :root {
-            --primary: #b76e79; /* Romantic rose gold */
-            --accent: #d4af8a; /* Soft gold */
-            --dark: #333333; /* Deep charcoal */
-            --light: #f9f5f2; /* Creamy white */
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
+  color: var(--nav-link);
+  padding: 0.8rem 1.2rem;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
 
-        /* Base Styles */
-        .wedding-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(249, 245, 242, 0.98);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            box-shadow: var(--shadow);
-            padding: 1.5rem 5%;
-            transition: var(--transition);
-            border-bottom: 1px solid rgba(214, 175, 138, 0.2);
-        }
-        .wedding-header-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0;
-        }
+.nav-links a:hover {
+  background: rgba(183, 110, 121, 0.1);
+  color: var(--primary);
+  transform: none;
+}
 
-        .wedding-header.scrolled {
-            padding: 1rem 5%;
-            background: rgba(249, 245, 242, 0.98);
-            box-shadow: 0 4px 30px rgba(183, 110, 121, 0.1);
-        }
+.nav-links a::before {
+  display: none; /* Remove underline effect */
+}
 
-        /* Logo Styles */
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.5rem, 3vw, 2.2rem);
-            color: var(--primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            letter-spacing: 1px;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .logo i {
-            margin-right: 12px;
-            color: var(--accent);
-            font-size: 1.2em;
-            transition: var(--transition);
-        }
-
-        .logo:hover {
-            transform: translateY(-2px);
-        }
-
-        .logo:hover i {
-            transform: scale(1.1) rotate(-10deg);
-        }
-
-        /* Navigation Links */
-        .nav-links {
-            display: flex;
-            gap: clamp(1.5rem, 3vw, 2.5rem);
-            align-items: center;
-        }
-
-        .nav-links a {
-            position: relative;
-            text-decoration: none;
-            color: var(--dark);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 500;
-            font-size: 1rem;
-            letter-spacing: 0.5px;
-            padding-right: 0px;
-            padding-left: 20px;
-            transition: var(--transition);
-            overflow: hidden;
-        }
-
-        .nav-links a::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: var(--primary);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        .nav-links a:hover::before {
-            width: 100%;
-        }
-
-        /* Mobile Menu Button */
         .mobile-menu-btn {
-            display: none;
-            background: transparent;
-            border: none;
-            color: var(--primary);
-            font-size: 1.8rem;
-            cursor: pointer;
-            transition: var(--transition);
-            padding: 0.5rem;
-            border-radius: 4px;
-            margin-right: 10px;
+          display: none;
         }
-
         .mobile-menu-btn:hover {
-            color: var(--accent);
-            transform: scale(1.1);
-        }
+  color: var(--primary);
+  transform: scale(1.1);
+}
+      }
 
-        .mobile-menu-btn:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(183, 110, 121, 0.3);
-        }
+      .prev-btn {
+        left: 20px;
+      }
 
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            .wedding-header {
-                padding: 1rem 5%;
-                flex-direction: row;
-                align-items: center;
-            }
-            
-            .nav-links {
-                position: fixed;
-                top: 100px;
-                left: 0;
-                width: 100%;
-                background: var(--light);
-                flex-direction: column;
-                align-items: center;
-                gap: clamp(1rem, 2vw, 1.8rem);
-                padding: 2rem 0;
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-                transform: translateY(-150%);
-                opacity: 0;
-                transition: var(--transition);
-                z-index: 999;
-            }
-            
-            .nav-links.active {
-                transform: translateY(0);
-                opacity: 1;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-        }
+      .next-btn {
+        right: 20px;
+      }
 
-        /* Animation for Nav Links */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+      .fade-in {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 3s ease,
+          transform 1s cubic-bezier(0.23, 1.01, 0.32, 1);
+      }
+      /* Navigation Links */
+      .nav-links {
+        display: flex;
+        gap: clamp(1rem, 2vw, 1.8rem);
+        align-items: center;
+        margin: 0;
+        padding: 0;
+      }
 
-        .nav-links.active a {
-            animation: fadeIn 0.4s ease forwards;
-        }
+      .nav-links a {
+        position: relative;
+        text-decoration: none;
+        color: var(--dark);
+        font-family: "Montserrat", sans-serif;
+        font-weight: 500;
+        font-size: 1rem;
+        letter-spacing: 0.5px;
+        padding: 0.5rem 0;
+        transition: var(--transition);
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
 
-        .nav-links.active a:nth-child(1) { animation-delay: 0.1s; }
-        .nav-links.active a:nth-child(2) { animation-delay: 0.2s; }
-        .nav-links.active a:nth-child(3) { animation-delay: 0.3s; }
-        .nav-links.active a:nth-child(4) { animation-delay: 0.4s; }
-        .wedding-gallery {
-            --primary: #8c6d62;
-            --accent: #e8c8b0;
-            --light: #f9f5f2;
-            --dark: #4a3f35;
-            --text: #333333;
-            
-            font-family: 'Raleway', sans-serif;
-            color: var(--text);
-            line-height: 1.6;
-            max-width: 100%;
-            margin: 0;
-            overflow-x: hidden;
-            background-color: var(--light);
-        }
-        
-        .wedding-gallery * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        /* Navigation styles moved to navigation.php */
-        
-        .hero-section {
-            height: 100vh;
-            min-height: 600px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('efarina_wedding_images/pengantin_sahaja/hero.jpg') center/cover no-repeat;
-            color: white;
-            padding: 20px;
-            margin-top: 0;
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            padding: 30px;
-        }
-        
-        .wedding-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
-            font-weight: 500;
-            letter-spacing: 2px;
-            margin-bottom: 1rem;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .wedding-subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            font-weight: 300;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .divider {
-            height: 2px;
-            width: 120px;
-            background: var(--accent);
-            margin: 2rem auto;
-        }
-        
-        .section {
-            padding: 100px 30px;
-            text-align: center;
-        }
-        
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: var(--dark);
-            position: relative;
-            display: inline-block;
-        }
-        
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 2px;
-            background: var(--primary);
-        }
-        
-        .filter-btn {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            padding: 8px 20px;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-        
-        .filter-btn.active, .filter-btn:hover {
-            background: var(--primary);
-            color: white;
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            height: 350px;
-            cursor: pointer;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .gallery-item:hover {
-            transform: translateY(-10px);
-        }
-        
-        .gallery-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .gallery-item:hover .gallery-img {
-            transform: scale(1.1);
-        }
-        
-        .gallery-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(transparent 60%, rgba(0,0,0,0.7));
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 20px;
-            color: white;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-        
-        .gallery-caption {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-        }
-        
-        .gallery-date {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-        
-        .testimonials-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 50px auto 0;
-        }
-        /* Center single testimonial in a row */
-        .testimonials-container:has(.testimonial:only-child) {
-            justify-content: center;
-            grid-template-columns: 1fr;
-        }
-        .testimonial {
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .testimonial {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            text-align: left;
-            position: relative;
-        }
-        
-        .testimonial:before {
-            content: "";
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            font-size: 4rem;
-            font-family: 'Playfair Display', serif;
-            color: var(--accent);
-            opacity: 0.3;
-        }
-        
-        .testimonial-text {
-            margin: 20px 0;
-            font-style: italic;
-        }
-        
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .author-img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        
-        .author-name {
-            font-weight: 500;
-            color: var(--dark);
-        }
-        
-        .author-relation {
-            font-size: 0.9rem;
-            color: var(--primary);
-        }
-        
-        .wedding-footer {
-            background: var(--dark);
-            color: white;
-            text-align: center;
-            padding: 60px 20px 30px;
-        }
-        
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin: 30px 0;
-        }
-        
-        .social-icons a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            color: var(--accent);
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-        }
-        
-        .social-icons a:hover {
-            background: var(--accent);
-            color: var(--dark);
-            transform: translateY(-5px);
-        }
-        
-        .copyright {
-            margin-top: 40px;
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.7);
-        }
-        
-        .lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 2000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-        
-        .lightbox.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-        
-        .lightbox-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90%;
-        }
-        
-        .lightbox-img {
-            max-width: 100%;
-            max-height: 80vh;
-            border-radius: 8px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
-        
-        .lightbox-caption {
-            color: white;
-            text-align: center;
-            margin-top: 15px;
-            font-size: 1.1rem;
-        }
-        
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .close-btn:hover {
-            transform: rotate(90deg);
-        }
-        
-        .nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255,255,255,0.2);
-            color: white;
-            border: none;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .nav-btn:hover {
-            background: var(--accent);
-            color: var(--dark);
-        }
-        
-        .prev-btn {
-            left: 20px;
-        }
-        
-        .next-btn {
-            right: 20px;
-        }
+      .nav-links a::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 3px;
+        background: var(--primary);
+        transition: var(--transition);
+      }
 
-        .fade-in {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 3s ease, transform 1s cubic-bezier(.23,1.01,.32,1);
-        }
+      .nav-links a:hover {
+        color: var(--primary);
+        transform: translateY(-2px);
+      }
 
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        /* Scroll Up Button Styles */
+      .nav-links a:hover::before {
+        width: 100%;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* Scroll Up Button Styles */
+      .scroll-up-btn {
+        position: fixed;
+        bottom: 32px;
+        right: 32px;
+        width: 48px;
+        height: 48px;
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.7rem;
+        cursor: pointer;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s, transform 0.3s;
+        z-index: 1200;
+      }
+      .scroll-up-btn.visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+      .scroll-up-btn:hover {
+        background: #bfa07d;
+        transform: scale(1.08);
+      }
+      @media (max-width: 600px) {
         .scroll-up-btn {
-            position: fixed;
-            bottom: 32px;
-            right: 32px;
-            width: 48px;
-            height: 48px;
-            background: var(--accent);
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.7rem;
-            cursor: pointer;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s, transform 0.3s;
-            z-index: 1200;
+          bottom: 18px;
+          right: 18px;
+          width: 40px;
+          height: 40px;
+          font-size: 1.2rem;
         }
-        .scroll-up-btn.visible {
-            opacity: 1;
-            pointer-events: auto;
-            transform: translateY(0);
-        }
-        .scroll-up-btn:hover {
-            background: #bfa07d;
-            transform: scale(1.08);
-        }
-        @media (max-width: 600px) {
-            .scroll-up-btn {
-                bottom: 18px;
-                right: 18px;
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-            }
-        }
-        
-        /* Navigation responsive styles moved to navigation.php */
+      }
+      .mobile-menu-btn {
+        display: block; /* Ensure the menu toggle is visible */
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--primary);
+      }
 
-        @media (max-width: 600px) {
-            .section {
-                padding: 40px 8px;
-            }
-            .wedding-title {
-                font-size: 2rem;
-            }
-            .section-title {
-                font-size: 1.5rem;
-            }
-            .hero-content {
-                padding: 10px;
-            }
-            .gallery-item {
-                height: 180px;
-            }
-            .testimonial {
-                padding: 15px;
-            }
-            .stat-box {
-                padding: 15px;
-            }
-            .divider {
-                width: 60px;
-            }
+      /* Responsive Adjustments */
+      @media (max-width: 768px) {
+        .nav-links {
+    background: var(--header-pink);
+    box-shadow: 0 10px 20px rgba(183, 110, 121, 0.15);
+  }
+
+        .section {
+          padding: 60px 5%;
         }
-        @media (max-width: 600px) {
-            .gallery-img {
-                height: auto;
-                min-height: 120px;
-            }
+
+        .gallery-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
         }
-        @media (max-width: 600px) {
+
+        .gallery-item {
+          height: 250px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        
+
+        .logo {
+          font-size: 1.4rem;
+        }
+
+        .hero-content {
+          padding: 15px;
+        }
+
+        .gallery-item {
+          height: 200px;
+        }
+
+        .social-icons a {
+          width: 40px;
+          height: 40px;
+          font-size: 1rem;
+        }
+      }
+      /* Mobile Responsiveness */
+      @media (max-width: 768px) {
+        
+
+        .nav-links {
+          position: fixed;
+          top: 80px;
+          left: 0;
+          width: 100%;
+          background: var(--light);
+          flex-direction: column;
+          align-items: center;
+          gap: 1.5rem;
+          padding: 2rem 0;
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+          transform: translateY(-150%);
+          opacity: 0;
+          transition: var(--transition);
+          z-index: 999;
+        }
+
+        .nav-links.active {
+          transform: translateY(0);
+          opacity: 1;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+        }
+      }
+      /* Animation for Nav Links */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .nav-links.active a {
+        animation: fadeIn 0.4s ease forwards;
+      }
+
+      .nav-links.active a:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .nav-links.active a:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .nav-links.active a:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+
+      @media (max-width: 600px) {
+        .section {
+          padding: 40px 8px;
+        }
+        .wedding-title {
+          font-size: 2rem;
+        }
+        .section-title {
+          font-size: 1.5rem;
+        }
+        .hero-content {
+          padding: 10px;
+        }
+        .gallery-item {
+          height: 180px;
+        }
+        .testimonial {
+          padding: 15px;
+        }
+        .stat-box {
+          padding: 15px;
+        }
+        .divider {
+          width: 60px;
+        }
+      }
+      @media (max-width: 600px) {
+        .gallery-img {
+          height: auto;
+          min-height: 120px;
+        }
+      }
+      @media (max-width: 600px) {
         .wedding-footer {
-            padding: 30px 8px 20px;
+          padding: 30px 8px 20px;
         }
         .social-icons a {
-            width: 38px;
-            height: 38px;
-            font-size: 1rem;
+          width: 38px;
+          height: 38px;
+          font-size: 1rem;
         }
-    }
+      }
+
+      .new-header {
+        background: var(--light);
+        box-shadow: var(--shadow);
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+      }
+
+      .new-header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+      }
+
+      .new-header .logo {
+        font-family: "Playfair Display", serif;
+        font-size: 1.5rem;
+        color: var(--primary);
+        text-decoration: none;
+      }
+
+      .new-nav ul {
+        list-style: none;
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .new-nav ul li a {
+        text-decoration: none;
+        color: var(--dark);
+        font-family: "Montserrat", sans-serif;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      .new-nav ul li a:hover {
+        color: var(--primary);
+      }
+
+      .menu-toggle {
+        display: block; /* Ensure the menu toggle is visible */
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--primary);
+      }
+
+      @media (max-width: 768px) {
+        .new-nav ul {
+          display: none;
+          flex-direction: column;
+          background: var(--light);
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          box-shadow: var(--shadow);
+          padding: 1rem 0;
+          z-index: 1000;
+        }
+
+        .new-nav ul.active {
+          display: flex;
+        }
+
+        .new-nav ul li {
+          width: 100%;
+          text-align: center;
+        }
+
+        .new-nav ul li a {
+          display: block;
+          padding: 1rem 2rem;
+          width: 100%;
+        }
+
+        .new-nav ul li a:hover {
+          background-color: rgba(var(--primary-rgb), 0.1);
+        }
+
+        .menu-toggle {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          padding: 0.5rem;
+          margin-left: 1rem;
+          z-index: 1001;
+        }
+      }
     </style>
     <!-- Scroll Up Button -->
     <button class="scroll-up-btn" aria-label="Scroll to top">
-        <i class="fas fa-chevron-up"></i>
+      <i class="fas fa-chevron-up"></i>
     </button>
-</head>
-<body>
+  </head>
+  <body>
     <div class="wedding-gallery">
-        <!-- Header -->
-        <header class="wedding-header">
-            <div class="wedding-header-inner">
-                <a href="#" class="logo">
-                    <i class="fas fa-heart"></i>
-                    <span class="couple-names">Efarina & Norden</span>
-                </a>
-                <nav class="nav-links">
-                    <a href="#gallery"><i class="fas fa-camera-retro"></i> Galeri</a>
-                    <a href="#memories"><i class="fas fa-heartbeat"></i> Memori</a>
-                    <a href="#contact"><i class="fas fa-envelope"></i> Hubungi</a>
-                </nav>
-                <button class="mobile-menu-btn" aria-label="Toggle navigation menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </header>
-        <!-- Hero Section -->
-        <section class="hero-section">
-            <div class="hero-content">
-                <h1 class="wedding-title">Galeri Perkahwinan</h1>
-                <p class="wedding-subtitle">Mentari pagi menyinar terang,<br>
-                                            Berkilau indah cahaya mentari,<br>
-                                            Semoga hidup sentiasa senang,<br>
-                                            Dilimpahi rezeki dan restu Ilahi.</p>
-                <div class="divider"></div>
-                <p>28 Jun, 2025 | No.144, Kampung Endap, Kota Samarahan</p>
-            </div>
-        </section>
-        
-        <!-- Gallery Section -->
-        <section id="gallery" class="section fade-in">
-            <h2 class="section-title">Detik Istimewa</h2>
-            
-            <div class="gallery-grid">
-                <!-- Majlis -->
-                <div class="gallery-item" data-category="ceremony">
-                    <img src="efarina_wedding_images/event/ceremony1.jpg" alt="Wedding ceremony" class="gallery-img">
-                    <div class="gallery-overlay">
-                        <h3 class="gallery-caption">Majlis</h3>
-                        <p class="gallery-date">Jun 28, 2025</p>
-                    </div>
-                </div>
-                
-                <!-- Pelamin -->
-                <div class="gallery-item" data-category="portraits">
-                    <img src="efarina_wedding_images/pelamin/pelamin.jpg" alt="Bride and groom" class="gallery-img">
-                    <div class="gallery-overlay">
-                        <h3 class="gallery-caption">Pelamin</h3>
-                        <p class="gallery-date">Jun 28, 2025</p>
-                    </div>
-                </div>
-                
-                <!-- Pengantin -->
-                <div class="gallery-item" data-category="reception">
-                    <img src="efarina_wedding_images/pengantin_sahaja/pengantin_sahaja.jpg" alt="Reception" class="gallery-img">
-                    <div class="gallery-overlay">
-                        <h3 class="gallery-caption">Pengantin</h3>
-                        <p class="gallery-date">Jun 28, 2025</p>
-                    </div>
-                </div>
-                
-                <!-- Details -->
-                <div class="gallery-item" data-category="details">
-                    <img src="efarina_wedding_images/zikir/zikir.jpg" alt="Wedding rings" class="gallery-img">
-                    <div class="gallery-overlay">
-                        <h3 class="gallery-caption">Zikir</h3>
-                        <p class="gallery-date">Jun 28, 2025</p>
-                    </div>
-                </div>
-                
-                <!-- Ceremony -->
-                <div class="gallery-item" data-category="ceremony">
-                    <img src="efarina_wedding_images/black_and_white_edited_by_photographer_paid/vantage.jpg" alt="Exchange of vows" class="gallery-img">
-                    <div class="gallery-overlay">
-                        <h3 class="gallery-caption">Vantage by Photographer</h3>
-                        <p class="gallery-date">16 Julai, 2025</p>
-                    </div>
-                </div>
-                
-                <!-- Portraits -->
-                <div class="gallery-item" data-category="portraits">
-                    <img src="efarina_wedding_images/gambar_dengan_pengantin/wpengantin.jpg" alt="Bride portrait" class="gallery-img">
-                    <div class="gallery-overlay">
-                        <h3 class="gallery-caption">Gambar Dengan Pengantin</h3>
-                        <p class="gallery-date">Jun 28, 2025</p>
-                    </div>
-                </div>
-                
-                <!-- Reception -->
-                <div class="gallery-item" data-category="reception">
-                    <img src="efarina_wedding_images/hantaran/hantaran1.jpg" alt="First dance" class="gallery-img">
-                    <div class="gallery-overlay">
-                        <h3 class="gallery-caption">Hantaran</h3>
-                        <p class="gallery-date">Jun 28, 2025</p>
-                    </div>
-                </div>
-                
-                <!-- Details -->
-                <div class="gallery-item" data-category="details">
-                    <img src="efarina_wedding_images/candid/candid.jpg" alt="Wedding cake" class="gallery-img">
-                    <div class="gallery-overlay">
-                        <h3 class="gallery-caption">Candid</h3>
-                        <p class="gallery-date">Jun 28, 2025</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Testimonials -->
-        <section id="memories" class="section fade-in">
-            <h2 class="section-title">Ucapan Dan Doa</h2>
-            
-            <div class="testimonials-container">
-                <div class="testimonial">
-                    <div class="testimonial-text">
-                        "Perkahwinan yang berlangsung dengan lancar. Semoga brekkalan hingga ke syurga."
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="efarina_wedding_images/comment_pic/emakku.png" alt="Sarah Johnson" class="author-img">
-                        <div>
-                            <div class="author-name">Rokiah binti Bojeng</div>
-                            <div class="author-relation">Ibu Pengantin Perempuan</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial">
-                    <div class="testimonial-text">
-                        "Selamat menempuh alam rumah tangga. Semoga setiap detik bersama dilimpahi rahmat. Amiiin"
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="efarina_wedding_images/comment_pic/bapak.png" alt="David Wilson" class="author-img">
-                        <div>
-                            <div class="author-name">Ajimat bin Su'ut</div>
-                            <div class="author-relation">Bapa Pengantin Perempuan</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial">
-                    <div class="testimonial-text">
-                        "Tahniah diucapkan kepada pengantin. Semoga segala urusan dipermudahkan oleh Allah S.W.T."
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="efarina_wedding_images/comment_pic/o.png" alt="Robert & Mary" class="author-img">
-                        <div>
-                            <div class="author-name">..</div>
-                            <div class="author-relation">Ibu Pengantin Lelaki</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Footer -->
-        <footer id="contact" class="wedding-footer">
-            <h2 class="section-title" style="color: white;">Efarina & Norden</h2>
-            <p style="margin: 20px 0;">Semuanya Bermula Di Sini</p>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-pinterest"></i></a>
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="far fa-envelope"></i></a>
-            </div>
-            <p>Hubungi kami untuk gambar dengan resolusi tinggi</p>
-            <p style="margin-top: 10px;">gallery@efarinaandnorden.com</p>
-            <p class="copyright">© 2025 efarina & norden Wedding Gallery. All rights reserved.</p>
-        </footer>
-        
-        <!-- Lightbox -->
-        <div class="lightbox">
-            <span class="close-btn"><i class="fas fa-times"></i></span>
-            <button class="nav-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
-            <button class="nav-btn next-btn"><i class="fas fa-chevron-right"></i></button>
-            <div class="lightbox-content">
-                <img src="" alt="" class="lightbox-img">
-                <p class="lightbox-caption"></p>
-            </div>
+
+      <!-- New Header -->
+      <header class="new-header">
+        <div class="container">
+          <a href="#" class="logo">Efarina & Norden</a>
+          <nav class="new-nav">
+            <ul>
+              <li><a href="#gallery">Gallery</a></li>
+              <li><a href="#memories">Memories</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </nav>
+          <button class="menu-toggle" aria-label="Toggle menu">
+            <i class="fas fa-bars"></i>
+          </button>
         </div>
+      </header>
+
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="hero-content">
+          <h1 class="wedding-title">Galeri Perkahwinan</h1>
+          <p class="wedding-subtitle">
+            Mentari pagi menyinar terang,<br />
+            Berkilau indah cahaya mentari,<br />
+            Semoga hidup sentiasa senang,<br />
+            Dilimpahi rezeki dan restu Ilahi.
+          </p>
+          <div class="divider"></div>
+          <p>28 Jun, 2025 | No.144, Kampung Endap, Kota Samarahan</p>
+        </div>
+      </section>
+
+      <!-- Gallery Section -->
+      <section id="gallery" class="section fade-in">
+        <h2 class="section-title">Detik Istimewa</h2>
+
+        <div class="gallery-grid">
+          <!-- Majlis -->
+          <div class="gallery-item" data-category="ceremony">
+            <img
+              src="efarina_wedding_images/event/ceremony1.jpg"
+              alt="Wedding ceremony"
+              class="gallery-img"
+            />
+            <div class="gallery-overlay">
+              <h3 class="gallery-caption">Majlis</h3>
+              <p class="gallery-date">Jun 28, 2025</p>
+            </div>
+          </div>
+
+          <!-- Pelamin -->
+          <div class="gallery-item" data-category="portraits">
+            <img
+              src="efarina_wedding_images/pelamin/pelamin.jpg"
+              alt="Bride and groom"
+              class="gallery-img"
+            />
+            <div class="gallery-overlay">
+              <h3 class="gallery-caption">Pelamin</h3>
+              <p class="gallery-date">Jun 28, 2025</p>
+            </div>
+          </div>
+
+          <!-- Pengantin -->
+          <div class="gallery-item" data-category="reception">
+            <img
+              src="efarina_wedding_images/pengantin_sahaja/pengantin_sahaja.jpg"
+              alt="Reception"
+              class="gallery-img"
+            />
+            <div class="gallery-overlay">
+              <h3 class="gallery-caption">Pengantin</h3>
+              <p class="gallery-date">Jun 28, 2025</p>
+            </div>
+          </div>
+
+          <!-- Details -->
+          <div class="gallery-item" data-category="details">
+            <img
+              src="efarina_wedding_images/zikir/zikir.jpg"
+              alt="Wedding rings"
+              class="gallery-img"
+            />
+            <div class="gallery-overlay">
+              <h3 class="gallery-caption">Zikir</h3>
+              <p class="gallery-date">Jun 28, 2025</p>
+            </div>
+          </div>
+
+          <!-- Ceremony -->
+          <div class="gallery-item" data-category="ceremony">
+            <img
+              src="efarina_wedding_images/black_and_white_edited_by_photographer_paid/vantage.jpg"
+              alt="Exchange of vows"
+              class="gallery-img"
+            />
+            <div class="gallery-overlay">
+              <h3 class="gallery-caption">Vantage by Photographer</h3>
+              <p class="gallery-date">16 Julai, 2025</p>
+            </div>
+          </div>
+
+          <!-- Portraits -->
+          <div class="gallery-item" data-category="portraits">
+            <img
+              src="efarina_wedding_images/gambar_dengan_pengantin/wpengantin.jpg"
+              alt="Bride portrait"
+              class="gallery-img"
+            />
+            <div class="gallery-overlay">
+              <h3 class="gallery-caption">Gambar Dengan Pengantin</h3>
+              <p class="gallery-date">Jun 28, 2025</p>
+            </div>
+          </div>
+
+          <!-- Reception -->
+          <div class="gallery-item" data-category="reception">
+            <img
+              src="efarina_wedding_images/hantaran/hantaran1.jpg"
+              alt="First dance"
+              class="gallery-img"
+            />
+            <div class="gallery-overlay">
+              <h3 class="gallery-caption">Hantaran</h3>
+              <p class="gallery-date">Jun 28, 2025</p>
+            </div>
+          </div>
+
+          <!-- Details -->
+          <div class="gallery-item" data-category="details">
+            <img
+              src="efarina_wedding_images/candid/candid.jpg"
+              alt="Wedding cake"
+              class="gallery-img"
+            />
+            <div class="gallery-overlay">
+              <h3 class="gallery-caption">Candid</h3>
+              <p class="gallery-date">Jun 28, 2025</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section id="memories" class="section fade-in">
+        <h2 class="section-title">Ucapan Dan Doa</h2>
+
+        <div class="testimonials-container">
+          <div class="testimonial">
+            <div class="testimonial-text">
+              "Perkahwinan yang berlangsung dengan lancar. Semoga brekkalan
+              hingga ke syurga."
+            </div>
+            <div class="testimonial-author">
+              <img
+                src="efarina_wedding_images/comment_pic/emakku.png"
+                alt="Sarah Johnson"
+                class="author-img"
+              />
+              <div>
+                <div class="author-name">Rokiah binti Bojeng</div>
+                <div class="author-relation">Ibu Pengantin Perempuan</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial">
+            <div class="testimonial-text">
+              "Selamat menempuh alam rumah tangga. Semoga setiap detik bersama
+              dilimpahi rahmat. Amiiin"
+            </div>
+            <div class="testimonial-author">
+              <img
+                src="efarina_wedding_images/comment_pic/bapak.png"
+                alt="David Wilson"
+                class="author-img"
+              />
+              <div>
+                <div class="author-name">Ajimat bin Su'ut</div>
+                <div class="author-relation">Bapa Pengantin Perempuan</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial">
+            <div class="testimonial-text">
+              "Tahniah diucapkan kepada pengantin. Semoga segala urusan
+              dipermudahkan oleh Allah S.W.T."
+            </div>
+            <div class="testimonial-author">
+              <img
+                src="efarina_wedding_images/comment_pic/o.png"
+                alt="Robert & Mary"
+                class="author-img"
+              />
+              <div>
+                <div class="author-name">..</div>
+                <div class="author-relation">Ibu Pengantin Lelaki</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer id="contact" class="wedding-footer">
+        <h2 class="section-title" style="color: white">Efarina & Norden</h2>
+        <p style="margin: 20px 0">Semuanya Bermula Di Sini</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="far fa-envelope"></i></a>
+        </div>
+        <p>Hubungi kami untuk gambar dengan resolusi tinggi</p>
+        <p style="margin-top: 10px">gallery@efarinaandnorden.com</p>
+        <p class="copyright">
+          © 2025 efarina & norden Wedding Gallery. All rights reserved.
+        </p>
+      </footer>
+
+      <!-- Lightbox -->
+      <div class="lightbox">
+        <span class="close-btn"><i class="fas fa-times"></i></span>
+        <button class="nav-btn prev-btn">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="nav-btn next-btn">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="lightbox-content">
+          <img src="" alt="" class="lightbox-img" />
+          <p class="lightbox-caption"></p>
+        </div>
+      </div>
     </div>
-    
+
     <script>
-        // Scroll Up Button functionality
-        const scrollUpBtn = document.querySelector('.scroll-up-btn');
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 200) {
-                scrollUpBtn.classList.add('visible');
+      // Scroll Up Button functionality
+      const scrollUpBtn = document.querySelector(".scroll-up-btn");
+      window.addEventListener("scroll", function () {
+        if (window.scrollY > 200) {
+          scrollUpBtn.classList.add("visible");
+        } else {
+          scrollUpBtn.classList.remove("visible");
+        }
+      });
+      scrollUpBtn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+      // Lightbox functionality
+      const lightbox = document.querySelector(".lightbox");
+      const lightboxImg = document.querySelector(".lightbox-img");
+      const lightboxCaption = document.querySelector(".lightbox-caption");
+      const closeBtn = document.querySelector(".close-btn");
+      const prevBtn = document.querySelector(".prev-btn");
+      const nextBtn = document.querySelector(".next-btn");
+      const galleryItems = document.querySelectorAll(".gallery-item");
+
+      let currentImageIndex = 0;
+      const images = [];
+
+      // Initialize gallery
+      galleryItems.forEach((item, index) => {
+        const img = item.querySelector(".gallery-img");
+        const caption = item.querySelector(".gallery-caption").textContent;
+
+        images.push({
+          src: img.src,
+          caption: caption,
+        });
+
+        item.addEventListener("click", () => {
+          openLightbox(index);
+        });
+      });
+
+      function openLightbox(index) {
+        currentImageIndex = index;
+        updateLightbox();
+        lightbox.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove("active");
+        document.body.style.overflow = "auto";
+      }
+
+      function updateLightbox() {
+        lightboxImg.src = images[currentImageIndex].src;
+        lightboxCaption.textContent = images[currentImageIndex].caption;
+      }
+
+      function showPrevImage() {
+        currentImageIndex =
+          (currentImageIndex - 1 + images.length) % images.length;
+        updateLightbox();
+      }
+
+      function showNextImage() {
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        updateLightbox();
+      }
+
+      // Event listeners
+      closeBtn.addEventListener("click", closeLightbox);
+      prevBtn.addEventListener("click", showPrevImage);
+      nextBtn.addEventListener("click", showNextImage);
+
+      // Close lightbox when clicking outside the image
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) {
+          closeLightbox();
+        }
+      });
+
+      // Keyboard navigation
+      document.addEventListener("keydown", (e) => {
+        if (lightbox.classList.contains("active")) {
+          if (e.key === "Escape") closeLightbox();
+          if (e.key === "ArrowLeft") showPrevImage();
+          if (e.key === "ArrowRight") showNextImage();
+        }
+      });
+
+      // Gallery filtering
+      const filterBtns = document.querySelectorAll(".filter-btn");
+
+      filterBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          // Remove active class from all buttons
+          filterBtns.forEach((b) => b.classList.remove("active"));
+
+          // Add active class to clicked button
+          btn.classList.add("active");
+
+          const filter = btn.dataset.filter;
+
+          galleryItems.forEach((item) => {
+            if (filter === "all" || item.dataset.category === filter) {
+              item.style.display = "block";
             } else {
-                scrollUpBtn.classList.remove('visible');
+              item.style.display = "none";
             }
+          });
         });
-        scrollUpBtn.addEventListener('click', function() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-        // Lightbox functionality
-        const lightbox = document.querySelector('.lightbox');
-        const lightboxImg = document.querySelector('.lightbox-img');
-        const lightboxCaption = document.querySelector('.lightbox-caption');
-        const closeBtn = document.querySelector('.close-btn');
-        const prevBtn = document.querySelector('.prev-btn');
-        const nextBtn = document.querySelector('.next-btn');
-        const galleryItems = document.querySelectorAll('.gallery-item');
-        
-        let currentImageIndex = 0;
-        const images = [];
-        
-        // Initialize gallery
-        galleryItems.forEach((item, index) => {
-            const img = item.querySelector('.gallery-img');
-            const caption = item.querySelector('.gallery-caption').textContent;
-            
-            images.push({
-                src: img.src,
-                caption: caption
-            });
-            
-            item.addEventListener('click', () => {
-                openLightbox(index);
-            });
-        });
-        
-        function openLightbox(index) {
-            currentImageIndex = index;
-            updateLightbox();
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeLightbox() {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-        
-        function updateLightbox() {
-            lightboxImg.src = images[currentImageIndex].src;
-            lightboxCaption.textContent = images[currentImageIndex].caption;
-        }
-        
-        function showPrevImage() {
-            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-            updateLightbox();
-        }
-        
-        function showNextImage() {
-            currentImageIndex = (currentImageIndex + 1) % images.length;
-            updateLightbox();
-        }
-        
-        // Event listeners
-        closeBtn.addEventListener('click', closeLightbox);
-        prevBtn.addEventListener('click', showPrevImage);
-        nextBtn.addEventListener('click', showNextImage);
-        
-        // Close lightbox when clicking outside the image
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                closeLightbox();
-            }
-        });
-        
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (lightbox.classList.contains('active')) {
-                if (e.key === 'Escape') closeLightbox();
-                if (e.key === 'ArrowLeft') showPrevImage();
-                if (e.key === 'ArrowRight') showNextImage();
-            }
-        });
-        
-        // Gallery filtering
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Remove active class from all buttons
-                filterBtns.forEach(b => b.classList.remove('active'));
-                
-                // Add active class to clicked button
-                btn.classList.add('active');
-                
-                const filter = btn.dataset.filter;
-                
-                galleryItems.forEach(item => {
-                    if (filter === 'all' || item.dataset.category === filter) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            });
-        });
-        
-        // Header scroll effect
-        const header = document.querySelector('.wedding-header');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                header.style.padding = '15px 40px';
-                header.style.backgroundColor = 'rgba(249, 245, 242, 0.98)';
-            } else {
-                header.style.padding = '20px 40px';
-                header.style.backgroundColor = 'rgba(249, 245, 242, 0.95)';
-            }
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                // Ripple animation for nav links
-                if (this.closest('.nav-links')) {
-                    const ripple = document.createElement('span');
-                    ripple.className = 'nav-ripple';
-                    const rect = this.getBoundingClientRect();
-                    ripple.style.width = ripple.style.height = Math.max(rect.width, rect.height) + 'px';
-                    ripple.style.left = (e.clientX - rect.left - rect.width/2) + rect.width/2 + 'px';
-                    ripple.style.top = (e.clientY - rect.top - rect.height/2) + rect.height/2 + 'px';
-                    this.appendChild(ripple);
-                    setTimeout(() => ripple.remove(), 500);
-                }
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // Parallax effect for hero section
-        window.addEventListener('scroll', () => {
-            const scrollPosition = window.scrollY;
-            const heroSection = document.querySelector('.hero-section');
-            
-            if (heroSection) {
-                heroSection.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
-            }
-        });
-        
-        // Typing effect for the hero title
-        document.addEventListener('DOMContentLoaded', function() {
-            const title = document.querySelector('.wedding-title');
-            if (title) {
-                const fullText = title.textContent;
-                title.textContent = '';
-                let i = 0;
-                function typeWriter() {
-                    if (i < fullText.length) {
-                        title.textContent += fullText.charAt(i);
-                        i++;
-                        setTimeout(typeWriter, 80);
-                    }
-                }
-                typeWriter();
-            }
-        });
-        
-        // Confetti effect on page load
-        function createConfettiPiece() {
-            const confetti = document.createElement('div');
-            confetti.classList.add('confetti');
-            confetti.style.left = Math.random() * 100 + 'vw';
-            confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
-            confetti.style.animationDuration = (Math.random() * 2 + 3) + 's';
-            document.body.appendChild(confetti);
+      });
 
-            setTimeout(() => {
-                confetti.remove();
-            }, 5000);
-        }
+      // Header scroll effect
+      const header = document.querySelector(".wedding-header");
 
-        for (let i = 0; i < 40; i++) {
-            setTimeout(createConfettiPiece, i * 80);
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 100) {
+          header.style.padding = "15px 40px";
+          header.style.backgroundColor = "rgba(249, 245, 242, 0.98)";
+        } else {
+          header.style.padding = "20px 40px";
+          header.style.backgroundColor = "rgba(249, 245, 242, 0.95)";
         }
+      });
 
-        // Add confetti CSS
-        const confettiStyle = document.createElement('style');
-        confettiStyle.innerHTML = `
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          // Ripple animation for nav links
+          if (this.closest(".nav-links")) {
+            const ripple = document.createElement("span");
+            ripple.className = "nav-ripple";
+            const rect = this.getBoundingClientRect();
+            ripple.style.width = ripple.style.height =
+              Math.max(rect.width, rect.height) + "px";
+            ripple.style.left =
+              e.clientX - rect.left - rect.width / 2 + rect.width / 2 + "px";
+            ripple.style.top =
+              e.clientY - rect.top - rect.height / 2 + rect.height / 2 + "px";
+            this.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 500);
+          }
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+
+      // Parallax effect for hero section
+      window.addEventListener("scroll", () => {
+        const scrollPosition = window.scrollY;
+        const heroSection = document.querySelector(".hero-section");
+
+        if (heroSection) {
+          heroSection.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
+        }
+      });
+
+      // Typing effect for the hero title
+      document.addEventListener("DOMContentLoaded", function () {
+        const title = document.querySelector(".wedding-title");
+        if (title) {
+          const fullText = title.textContent;
+          title.textContent = "";
+          let i = 0;
+          function typeWriter() {
+            if (i < fullText.length) {
+              title.textContent += fullText.charAt(i);
+              i++;
+              setTimeout(typeWriter, 80);
+            }
+          }
+          typeWriter();
+        }
+      });
+
+      // Confetti effect on page load
+      function createConfettiPiece() {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.backgroundColor = `hsl(${
+          Math.random() * 360
+        }, 70%, 60%)`;
+        confetti.style.animationDuration = Math.random() * 2 + 3 + "s";
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+          confetti.remove();
+        }, 5000);
+      }
+
+      for (let i = 0; i < 40; i++) {
+        setTimeout(createConfettiPiece, i * 80);
+      }
+
+      // Add confetti CSS
+      const confettiStyle = document.createElement("style");
+      confettiStyle.innerHTML = `
         .confetti {
             position: fixed;
             top: -20px;
@@ -1075,61 +1245,79 @@
             }
         }
         `;
-        document.head.appendChild(confettiStyle);
+      document.head.appendChild(confettiStyle);
 
-        // Fade-in on scroll
-        function revealOnScroll() {
-            document.querySelectorAll('.fade-in').forEach(el => {
-                const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight - 60) {
-                    el.classList.add('visible');
-                }
-            });
+      // Fade-in on scroll
+      function revealOnScroll() {
+        document.querySelectorAll(".fade-in").forEach((el) => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 60) {
+            el.classList.add("visible");
+          }
+        });
+      }
+      window.addEventListener("scroll", revealOnScroll);
+      window.addEventListener("DOMContentLoaded", revealOnScroll);
+
+      // Header scroll effect
+      window.addEventListener("scroll", function () {
+        const header = document.querySelector(".wedding-header");
+        if (window.scrollY > 50) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
         }
-        window.addEventListener('scroll', revealOnScroll);
-        window.addEventListener('DOMContentLoaded', revealOnScroll);
+      });
 
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('.wedding-header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
+      // Mobile menu toggle
+      document.addEventListener("DOMContentLoaded", function() {
+        const menuToggle = document.querySelector(".menu-toggle");
+        const navMenu = document.querySelector(".new-nav ul");
+        const menuIcon = menuToggle.querySelector("i");
+
+        if (menuToggle && navMenu && menuIcon) {
+          // Set initial state
+          menuIcon.classList.add("fa-bars");
+          menuIcon.classList.remove("fa-times");
+          navMenu.classList.remove("active");
+
+          // Toggle menu on button click
+          menuToggle.addEventListener("click", function(e) {
+            e.stopPropagation();
+            navMenu.classList.toggle("active");
+            menuIcon.classList.toggle("fa-bars");
+            menuIcon.classList.toggle("fa-times");
+          });
+
+          // Close menu when clicking outside
+          document.addEventListener("click", function(e) {
+            if (
+              navMenu.classList.contains("active") &&
+              !e.target.closest(".new-nav") &&
+              !e.target.closest(".menu-toggle")
+            ) {
+              navMenu.classList.remove("active");
+              menuIcon.classList.add("fa-bars");
+              menuIcon.classList.remove("fa-times");
             }
-        });
+          });
 
-        // Mobile menu toggle
-        const mobileBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-
-        mobileBtn.addEventListener('click', function() {
-            navLinks.classList.toggle('active');
-            this.setAttribute('aria-expanded', navLinks.classList.contains('active'));
-            
-            // Toggle icon between bars and times
-            const icon = this.querySelector('i');
-            if (navLinks.classList.contains('active')) {
-                icon.classList.replace('fa-bars', 'fa-times');
-            } else {
-                icon.classList.replace('fa-times', 'fa-bars');
-            }
-        });
-
-        // Close menu when clicking on a link (for mobile)
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth <= 768) {
-                    navLinks.classList.remove('active');
-                    mobileBtn.querySelector('i').classList.replace('fa-times', 'fa-bars');
-                    mobileBtn.setAttribute('aria-expanded', 'false');
-                }
+          // Close menu when clicking on links
+          navMenu.querySelectorAll("a").forEach(function(link) {
+            link.addEventListener("click", function() {
+              navMenu.classList.remove("active");
+              menuIcon.classList.add("fa-bars");
+              menuIcon.classList.remove("fa-times");
             });
-        });
-        // Scroll to top on page refresh
-        window.addEventListener('beforeunload', function () {
-            window.scrollTo(0, 0);
-        });
+          });
+        }
+      });
+
+// Scroll to top on page refresh
+window.addEventListener("beforeunload", function () {
+  window.scrollTo(0, 0);
+});
+
     </script>
-</body>
+  </body>
 </html>
