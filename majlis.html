@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Gallery | Efarina & Norden</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --primary: #b76e79;
+            --accent: #d4af8a;
+            --dark: #333333;
+            --light: #f9f5f2;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: var(--light);
+            font-family: 'Raleway', sans-serif;
+        }
+
+        .gallery-container {
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            aspect-ratio: 3/2;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+
+        .section-title {
+            font-family: "Playfair Display", serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1600px) {
+            .gallery-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery-container">
+        <h1 class="section-title">Wedding Gallery</h1>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (1).jpg" alt="Wedding Image 1" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (2).jpg" alt="Wedding Image 2" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (3).jpg" alt="Wedding Image 3" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (4).jpg" alt="Wedding Image 4" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (5).jpg" alt="Wedding Image 5" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (6).jpg" alt="Wedding Image 6" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (7).jpg" alt="Wedding Image 7" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (8).jpg" alt="Wedding Image 8" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (9).jpg" alt="Wedding Image 9" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (10).jpg" alt="Wedding Image 10" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (11).jpg" alt="Wedding Image 11" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (12).jpg" alt="Wedding Image 12" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (13).jpg" alt="Wedding Image 13" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (14).jpg" alt="Wedding Image 14" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (15).jpg" alt="Wedding Image 15" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (16).jpg" alt="Wedding Image 16" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (17).jpg" alt="Wedding Image 17" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (18).jpg" alt="Wedding Image 18" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (19).jpg" alt="Wedding Image 19" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (20).jpg" alt="Wedding Image 20" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (21).jpg" alt="Wedding Image 21" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (22).jpg" alt="Wedding Image 22" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (23).jpg" alt="Wedding Image 23" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (24).jpg" alt="Wedding Image 24" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (25).jpg" alt="Wedding Image 25" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (26).jpg" alt="Wedding Image 26" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (27).jpg" alt="Wedding Image 27" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (28).jpg" alt="Wedding Image 28" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (29).jpg" alt="Wedding Image 29" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (30).jpg" alt="Wedding Image 30" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (31).jpg" alt="Wedding Image 31" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (32).jpg" alt="Wedding Image 32" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (33).jpg" alt="Wedding Image 33" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (34).jpg" alt="Wedding Image 34" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (35).jpg" alt="Wedding Image 35" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (36).jpg" alt="Wedding Image 36" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (37).jpg" alt="Wedding Image 37" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (38).jpg" alt="Wedding Image 38" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (39).jpg" alt="Wedding Image 39" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (40).jpg" alt="Wedding Image 40" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (41).jpg" alt="Wedding Image 41" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (42).jpg" alt="Wedding Image 42" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (43).jpg" alt="Wedding Image 43" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (44).jpg" alt="Wedding Image 44" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (45).jpg" alt="Wedding Image 45" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (46).jpg" alt="Wedding Image 46" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (47).jpg" alt="Wedding Image 47" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (48).jpg" alt="Wedding Image 48" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (49).jpg" alt="Wedding Image 49" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (50).jpg" alt="Wedding Image 50" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (51).jpg" alt="Wedding Image 51" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (52).jpg" alt="Wedding Image 52" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (53).jpg" alt="Wedding Image 53" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (54).jpg" alt="Wedding Image 54" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (55).jpg" alt="Wedding Image 55" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (56).jpg" alt="Wedding Image 56" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (57).jpg" alt="Wedding Image 57" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (58).jpg" alt="Wedding Image 58" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (59).jpg" alt="Wedding Image 59" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (60).jpg" alt="Wedding Image 60" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="efarina_wedding_images/majlis (61).jpg" alt="Wedding Image 61" class="gallery-img">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
