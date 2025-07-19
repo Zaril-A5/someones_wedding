@@ -379,8 +379,8 @@
     </style>
 </head>
 <body>
-    <div class="majlis-variables majlis-page">
-    <div class="majlis-container">
+    <div class="majlis-variables majlis-page" style="min-height: 100vh; display: flex; flex-direction: column;">
+    <div class="majlis-container" style="flex: 1;">
         <h1 class="majlis-title">Wedding Gallery</h1>
         <div class="majlis-grid">
             <div class="gallery-item"><img src="efarina_wedding_images/event/ceremony.jpg" alt="Wedding Image 1" class="majlis-img"></div>
@@ -469,7 +469,23 @@
     <button class="scroll-up-btn" aria-label="Scroll to top">
         <i class="fas fa-chevron-up"></i>
     </button>
+    </div>
+    <!-- Footer -->
+    <footer id="contact" class="wedding-footer">
+        <h2 class="section-title" style="color: white">Efarina & Norden</h2>
+        <p style="margin: 20px 0">Semuanya Bermula Di Sini</p>
+        <div class="social-icons">
+            <a href="https://wa.me/601125051874" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:marriageefarina@gmail.com"><i class="far fa-envelope"></i></a>
+        </div>
+        <p>Hubungi kami untuk gambar dengan resolusi tinggi</p>
+        <p style="margin-top: 10px">marriageefarina@gmail.com</p>
+        <p class="copyright">
+            © 2025 efarina & norden Wedding Gallery. All rights reserved.
+        </p>
+    </footer>
 </body>
+
 <script>
         // Scroll-Up Button Functionality
         document.addEventListener('DOMContentLoaded', function () {
@@ -633,4 +649,5 @@
             toggleScrollButton();
         });
     </script>
+    
 </html>
